@@ -1,0 +1,4 @@
+GRANT_TYPE="client_credentials"
+CLIENT_ID="Your client id"
+CLIENT_SECRET="Your client secret"
+PIPELINE_CONFIG="Relative location of config file within ETL folder (e.g. config.yaml for a file located at etl/config.yaml)"

@@ -19,7 +19,7 @@ def main(*args) -> bool:
         client_id, client_secret, grant_type, config = args
     except ValueError as ve:
         logger.info(f'Check to make sure all config values are passed into main: {repr(ve)}\nExiting...')
-        return
+        return False
     # Start pipeline
     success, err = pipeline.start(client_id, client_secret, grant_type, config)
     if err:
@@ -37,14 +37,15 @@ if __name__ == '__main__':
         CLIENT_ID = os.environ['CLIENT_ID']
         CLIENT_SECRET = os.environ['CLIENT_SECRET']
         GRANT_TYPE = os.environ['GRANT_TYPE']
-        with open(Path.cwd()/'config.yaml', 'r') as file:
+        PIPELINE_CONFIG = os.environ['PIPELINE_CONFIG']
+        with open(Path.cwd()/PIPELINE_CONFIG, 'r') as file:
             config = yaml.load(file, Loader=SafeLoader)
         logger.info('Starting pipeline...')
         status = main(CLIENT_ID, CLIENT_SECRET, GRANT_TYPE, config)
     except KeyError as ke:
         logger.info(f'Missing required environment variable(s): {repr(ke)}')
     except FileNotFoundError as fnfe:
-        logger.info(f'Missing required `config.yaml` file in {Path.cwd()}: {repr(fnfe)}')
+        logger.info(f'Missing required config file or incorrect path provided: {Path.cwd()/PIPELINE_CONFIG}: {repr(fnfe)}')
     except Exception:
         logger.exception('An error occurred while starting the pipeline. Exiting...')
     finally:
@@ -52,4 +53,3 @@ if __name__ == '__main__':
             logger.info('Process complete! View data at...') # TODO: add location to view data
         else:
             logger.info('Something went wrong. Try again.')
-            
