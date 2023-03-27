@@ -1,0 +1,10 @@
+# Configuration for the IGDB ETL Process
+endpoints:
+  games: https://api.igdb.com/v4/games
+  collections: https://api.igdb.com/v4/collections
+  franchises: https://api.igdb.com/v4/franchises
+  localizations: https://api.igdb.com/v4/game_localizations
+  involved_companies: https://api.igdb.com/v4/involved_companies
+  companies: https://api.igdb.com/v4/companies
+  language_supports: https://api.igdb.com/v4/language_supports
+  platforms: https://api.igdb.com/v4/platforms
