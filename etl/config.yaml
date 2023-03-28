@@ -1,10 +1,98 @@
 # Configuration for the IGDB ETL Process
-endpoints:
-  games: https://api.igdb.com/v4/games
-  collections: https://api.igdb.com/v4/collections
-  franchises: https://api.igdb.com/v4/franchises
-  localizations: https://api.igdb.com/v4/game_localizations
-  involved_companies: https://api.igdb.com/v4/involved_companies
-  companies: https://api.igdb.com/v4/companies
-  language_supports: https://api.igdb.com/v4/language_supports
-  platforms: https://api.igdb.com/v4/platforms
+schema:
+  games:
+    endpoint: https://api.igdb.com/v4/games
+    filter: total_rating != null & collection != null & franchises != null
+    columns:
+      - age_ratings
+      - aggregated_rating
+      - aggregated_rating_count
+      - category
+      - id
+      - collection
+      - dlcs
+      - first_release_date
+      - franchise
+      - franchises
+      - game_localizations
+      - genres
+      - involved_companies
+      - game_modes
+      - language_supports
+      - multiplayer_modes
+      - platforms
+      - player_perspectives
+      - ports
+      - rating 
+      - rating_count 
+      - similar_games
+      - status
+      - storyline
+      - summary
+      - total_rating
+      - total_rating_count
+      - updated_at
+      - version_title
+      - url
+---
+  collections:
+    endpoint: https://api.igdb.com/v4/collections
+    columns:
+      - id
+      - name
+      - games
+      - url
+---
+  franchises: 
+    endpoint: https://api.igdb.com/v4/franchises
+    columns:
+      - id
+      - name
+      - games
+      - url
+---
+  localizations: 
+    endpoint: https://api.igdb.com/v4/game_localizations
+    columns:
+      - id
+      - game
+      - region
+---
+  involved_companies: 
+    endpoint: https://api.igdb.com/v4/involved_companies
+    columns:
+      - id
+      - game
+      - company
+      - developer
+      - publisher
+      - porting
+      - supporting
+      - url
+---
+  companies: 
+    endpoint: https://api.igdb.com/v4/companies
+    columns:
+      - id
+      - name
+      - url
+---
+  language_supports: 
+    endpoint: https://api.igdb.com/v4/language_supports
+    columns:
+      - id
+      - game
+      - language
+      - language_support_type
+---
+  platforms: 
+    endpoint: https://api.igdb.com/v4/platforms
+    columns:
+      - id
+      - abbreviation
+      - alternative_name
+      - category
+      - generation
+      - name
+      - platform_family
+      - url
